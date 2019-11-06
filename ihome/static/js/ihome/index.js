@@ -58,6 +58,16 @@ function goToSearchPage(th) {
 }
 
 $(document).ready(function(){
+      // 检查用户的登录状态
+    $.get("/api/v1.0/session", function(resp) {
+        if ("0" == resp.errno) {
+            $(".top-bar>.user-info>.user-name").html(resp.data.name);
+            $(".top-bar>.user-info").show();
+            $(".top-bar>.register-login").hide();
+        } else {
+            $(".top-bar>.register-login").show();
+        }
+    }, "json");
     $(".top-bar>.register-login").show();
     var mySwiper = new Swiper ('.swiper-container', {
         loop: true,
