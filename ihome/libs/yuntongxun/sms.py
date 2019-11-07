@@ -4,7 +4,6 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-
 from CCPRestSDK import REST
 
 # 主帐号
@@ -25,10 +24,11 @@ serverPort = '8883'
 # REST版本号
 softVersion = '2013-12-26'
 
-  # 发送模板短信
-  # @param to 手机号码
-  # @param datas 内容数据 格式为列表 例如：['12','34']，如不需替换请填 ''
-  # @param $tempId 模板Id
+
+# 发送模板短信
+# @param to 手机号码
+# @param datas 内容数据 格式为列表 例如：['12','34']，如不需替换请填 ''
+# @param $tempId 模板Id
 class CCP(object):
     """自己封装的发送短信的辅助类"""
     # 用来保存对象的类属性
@@ -75,4 +75,3 @@ if __name__ == '__main__':
     ccp = CCP()
     ret = ccp.send_template_sms("15868876482", ["1234", "5"], 1)
     print(ret)
-

@@ -12,6 +12,7 @@ from ihome.models import User
 from sqlalchemy.exc import IntegrityError
 import re
 
+
 @api.route("/users", methods=["POST"])
 def register():
     """注册
@@ -180,11 +181,8 @@ def check_login():
 @api.route("/session", methods=["DELETE"])
 def logout():
     """登出"""
-    # 清除session数据
+    # 清除session数据,wtf需要保存在session中所以会存在bug，这么做就可以解决
     csrf_token = session.get("csrf_token")
     session.clear()
     session["csrf_token"] = csrf_token
     return jsonify(errno=RET.OK, errmsg="OK")
-
-
-

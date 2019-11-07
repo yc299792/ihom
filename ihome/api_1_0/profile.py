@@ -10,7 +10,7 @@ from flask import g, current_app, jsonify, request, session
 from ihome.utils.response_code import RET
 from ihome.utils.image_storage import storage
 from ihome.models import User
-from ihome import db,constants
+from ihome import db, constants
 
 
 @api.route("/users/avatar", methods=["POST"])
@@ -49,6 +49,7 @@ def set_user_avatar():
     avatar_url = constants.QINIU_URL_DOMAIN + file_name
     # 保存成功返回
     return jsonify(errno=RET.OK, errmsg="保存成功", data={"avatar_url": avatar_url})
+
 
 @api.route("/users/name", methods=["PUT"])
 @login_required
@@ -137,7 +138,7 @@ def set_user_auth():
 
     # 保存用户的姓名与身份证号
     try:
-        User.query.filter_by(id=user_id, real_name=None, id_card=None)\
+        User.query.filter_by(id=user_id, real_name=None, id_card=None) \
             .update({"real_name": real_name, "id_card": id_card})
         db.session.commit()
     except Exception as e:

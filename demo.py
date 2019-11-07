@@ -8,7 +8,6 @@ import functools
 
 
 def login_required(func):
-
     @functools.wraps(func)
     def wrapper(*arg, **kwargs):
         pass
@@ -21,7 +20,8 @@ def itcast():
     """itcast python"""
     pass
 
+
 # itcast ->  wrapper
 
 print(itcast.__name__)  # wrapper.__name__
-print(itcast.__doc__)   # wrapper.__doc__
+print(itcast.__doc__)  # wrapper.__doc__
